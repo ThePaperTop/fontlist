@@ -12,10 +12,10 @@ class FontList(list):
         list.__init__(self, fonts)
     def all():
         return FontList(sorted(eval("[" + os.popen(r'''fc-list -f "{\"name\":\"%{family[0]|cescape}\",
-        \"path\":\"%{file|cescape}\",
-        \"style\":\"%{style[0]|cescape}\",
-        \"styles\":\"%{style|cescape}\".split(\",\"),
-        \"weight\":%{weight|cescape},
+\"path\":\"%{file|cescape}\",
+\"style\":\"\"\"%{style[0]|cescape}\"\"\".strip(),
+\"styles\":\"\"\"%{style|cescape}\"\"\".strip().split(\",\"),
+\"weight\":%{weight|cescape},
         \"spacing\":%{spacing:-0}},\n"''').read() + "]"),
                                key=lambda font: font["name"]))
     def bold(self):
